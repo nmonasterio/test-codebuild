@@ -1,0 +1,28 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  pre_build:
+    commands:
+      - BRANCH=`git branch -a --contains $CODEBUILD_SOURCE_VERSION | sed -n 2p || $CODEBUILD_SOURCE_VERSION`
+      - export CI_BRANCH="$BRANCH"
+      - echo "We are on $BRANCH"
+  install:
+    commands:
+      - echo "Installing, this is new branch, about to do pull request."
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths

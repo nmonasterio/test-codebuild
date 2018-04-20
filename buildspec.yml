@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - BRANCH=`git branch -a --contains $CODEBUILD_SOURCE_VERSION | sed -n 2p || $CODEBUILD_SOURCE_VERSION`
+      - export CI_BRANCH="$BRANCH"
+      - ./envs.sh
+  pre_build:
+    commands:
+      - env

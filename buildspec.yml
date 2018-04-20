@@ -8,9 +8,10 @@ phases:
       - chmod +x ./aws-env
       - SECRETS_PREFIX=""
       - '[[ $CI_BRANCH =~ .*beta ]] && { SECRETS_PREFIX="dev"; true; } || true;'
-      #- "[[ $CI_BRANCH =~ .*staging ]] && { SECRETS_PREFIX="staging"; true; } || true;"
-      #- "[[ $CI_BRANCH =~ .*master ]] && { SECRETS_PREFIX="master"; true; } || true;"
-      #- export AWS_ENV_PATH="/$SECRETS_PREFIX/partnerships/"
+      - '[[ $CI_BRANCH =~ .*staging ]] && { SECRETS_PREFIX="staging"; true; } || true;'
+      - '[[ $CI_BRANCH =~ .*master ]] && { SECRETS_PREFIX="master"; true; } || true;'
+      - 'export AWS_ENV_PATH="/$SECRETS_PREFIX/partnerships/'
+      - echo "$AWS_ENV_PATH"
       #- "[ -n "$SECRETS_PREFIX" ] && { eval $(./aws-env); true; } || echo "Not building from a branch that requires envs"; true;""
   pre_build:
     commands:

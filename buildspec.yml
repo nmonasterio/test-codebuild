@@ -4,7 +4,10 @@ phases:
     commands:
       - BRANCH=`git branch -a --contains $CODEBUILD_SOURCE_VERSION | sed -n 2p || $CODEBUILD_SOURCE_VERSION`
       - export CI_BRANCH="$BRANCH"
-      - ./envs.sh
+      - curl -L -o aws-env https://github.com/Droplr/aws-env/raw/master/bin/aws-env-linux-amd64
+      - chmod +x ./aws-env
+      - eval $(AWS_ENV_PATH=/dev/partnerships/ AWS_REGION=us-east-1 ./aws-env)
+      - if [[ $CI_BRANCH =~ .*beta ]]; then echo "There's beta!"; elif [[ $CI_BRANCH =~ .*staging ]]; then echo "There's staging!"; elif [[ $CI_BRANCH =~ .*master ]]; then echo "There's master!"; else echo "None of the above!" fi;
   pre_build:
     commands:
       - echo "Dev ETL Server is... $DEV_ETL_SERVER"

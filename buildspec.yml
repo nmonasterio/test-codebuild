@@ -7,4 +7,4 @@ phases:
       - ./envs.sh
   pre_build:
     commands:
-      - env
+      - echo "Dev ETL Server is... $DEV_ETL_SERVER"

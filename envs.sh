@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -L -o aws-env https://github.com/Droplr/aws-env/raw/master/bin/aws-env-darwin-amd64
+curl -L -o aws-env https://github.com/Droplr/aws-env/raw/master/bin/aws-env-linux-amd64
 chmod +x ./aws-env
 
 if [[ $CI_BRANCH =~ .*beta ]]
